@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for post in posts %}
+        <!-- <article class="post" style="background-color: white; padding:20px; margin-top:20px; height: 60%; margin-bottom: 30px;">
+            <p class="date">
+                created: {{ post.created_date|date:'d-m-Y' }}
+            </p>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|truncatechars:200 }}</p>
+        </article> -->
+
+            <section class="dark-grey-text">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 col-xl-4">
+                        <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
+                            <img src="{{post.image.url | default_if_none:'#' }}" style ="width: 415px; height: 230px;">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-xl-8">
+                        <h4 class="font-weight-bold mb-3"><strong><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title}}</a></strong></h4>
+                        <p class="dark-grey-text">{{ post.text|truncatechars:200 }}</p>
+                        <br>
+                        <p>by <strong>{{post.auther}}</strong>, created: {{ post.created_date|date:'d-m-Y' }}</p>
+                    </div>
+                </div>
+                <hr class="my-5">
+            </section>
+    {% endfor %}
+{% endblock %}
+
+

@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+    <div style="background-color: white; padding:20px; margin-top:20px; height: 790px; margin-bottom: 20px;">
+        <h2>New post</h2>
+        <form method="POST" class="post-form" , enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <h4>Category</h4>   
+            <select class="form-select form-select-m mb-3" aria-label=".form-select-m example" name="categories">
+                <option selected>Choose Your Category</option>
+                <option value="{{form.categories}}"></option>
+                <!-- {% for option in categories %}
+                    <option value="{{ option.id}}">{{ option.title_category }}</option>
+                {% endfor %} -->
+            </select>
+            <br>
+            <h4>Tages</h4>
+            <select class="form-select form-select-m mb-3" aria-label=".form-select-m example">
+                <option selected>Choose Your Tags</option>
+                <option value="1">One</option>
+            </select>
+            <button type="submit" class="save btn btn-secondary">Save</button>
+        </form>
+    </div>
+    
+{% endblock %}

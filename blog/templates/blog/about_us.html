@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5 z-depth-1">
+    <section class="dark-grey-text">
+        <div class="row pr-lg-5" style="background-color: white; box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.5);" >
+            {% for item in data %}
+                <div class="col-md-7 mb-4">
+                    <div class="view">
+                        <img src="{{item.image.url | default_if_none:'#' }}" style="width:800px ;height: 100%;">
+                    </div>
+                </div>
+                <div class="col-md-5 d-flex align-items-center" style="padding-right: 140px"; dir="rtl">
+                    <div>
+                            <h3 style="font-family: Entezar1;font-size:45px">درباره ما</h3>
+                            <p class="font-weight-bold">{{item.about_text}}</p>
+                            <p class="text-muted">آدرس: {{item.address}}</p>
+                            <p class="text-muted">تلفن تماس: {{item.fax}}</p>
+                            <p class="text-muted">آدرس ایمیل: {{item.email}}</p>
+                    </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

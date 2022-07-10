@@ -10,10 +10,9 @@
             <h4>Category</h4>   
             <select class="form-select form-select-m mb-3" aria-label=".form-select-m example" name="categories">
                 <option selected>Choose Your Category</option>
-                <option value="{{form.categories}}"></option>
-                <!-- {% for option in categories %}
-                    <option value="{{ option.id}}">{{ option.title_category }}</option>
-                {% endfor %} -->
+                {% for category in form.categories %}
+                    <option value="{{category.id}}">{{category}}</option>
+                {% endfor %}
             </select>
             <br>
             <h4>Tages</h4>

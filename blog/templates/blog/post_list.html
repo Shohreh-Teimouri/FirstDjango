@@ -4,15 +4,15 @@
 
 {% block content %}
     <div class="col-md-8">
-        <div class="leftcolumn" style="float:left; width: 100%;">
+        <div class="leftcolumn" style="float:left; width: 100%; direction: rtl;">
             {% for post in page_obj %}
                 <div class="post" style="background-color: white; padding:15px; margin-top:20px; height: 60%; margin-bottom: 30px;">
                     <img src="{{post.image.url | default_if_none:'#' }}" style="padding-bottom: 20px; width: 100%; height: 300px;">
-                    <time class="date" style="padding-top:15px;">{{ post.published_date }}</time>
+                    <time class="date" style="padding-top:15px; float: left;">{{ post.published_date }}</time>
                     <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
                     <p>{{ post.text|linebreaksbr }}</p>
-                    <p>views ({{post.num_views}})</p>
-                    <a href="{% url 'post_detail' pk=post.pk%} ">Comments: {{ post.approved_comments.count }}</a>
+                    <p>بازدید ({{post.num_views}})</p>
+                    <a href="{% url 'post_detail' pk=post.pk%} ">نظرات: {{ post.approved_comments.count }}</a>
                 </div>
             {% endfor %}
             <div class="row">

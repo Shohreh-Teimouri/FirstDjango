@@ -1,26 +1,35 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
-    <div style="background-color: white; padding:20px; margin-top:20px; height: 790px; margin-bottom: 20px;">
-        <h2>New post</h2>
+    <div style="background-color: white; padding:20px; margin-top:20px; margin-bottom: 20px; direction: rtl; font-family: 'Entezar1';">
+        <p class="page-header" style="background:linear-gradient(to right, #330069,#6610c2 ); color: white; font-size: 32px;">پست جدید</p>
+        <br>
         <form method="POST" class="post-form" , enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
+            <div>
+                <h5>عنوان:</h5>{{ form.title }}
+            </div><br>
+            <div>
+                <h5>متن :</h5>{{ form.text }}
+            </div><br>
+            <div>
+                <h5>تصویر:</h5>{{ form.image }}
+            </div>
             <br>
-            <h4>Category</h4>   
+            <h5>دسته بندی:</h5>
             <select class="form-select form-select-m mb-3" aria-label=".form-select-m example" name="categories">
-                <option selected>Choose Your Category</option>
+                <option selected>دسته بندی مورد نظر را انتخاب کنید</option>
                 {% for category in form.categories %}
-                    <option value="{{category.id}}">{{category}}</option>
+                <option value="{{category.id}}">{{category}}</option>
                 {% endfor %}
             </select>
             <br>
-            <h4>Tages</h4>
-            <select class="form-select form-select-m mb-3" aria-label=".form-select-m example">
-                <option selected>Choose Your Tags</option>
-                <option value="1">One</option>
-            </select>
-            <button type="submit" class="save btn btn-secondary">Save</button>
+            <!-- <h5>Tages</h5>
+                    <select class="form-select form-select-m mb-3" aria-label=".form-select-m example">
+                        <option selected>Choose Your Tags</option>
+                        <option value="1">One</option>
+                    </select> -->
+            <button type="submit" class="save btn btn-secondary">ذخیره</button>
         </form>
     </div>
     

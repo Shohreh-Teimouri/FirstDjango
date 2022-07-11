@@ -1,9 +1,11 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <h1>New comment</h1>
+<div style="direction: rtl; font-family: 'Entezar1';">
+    <p style="font-size: 32px;">نظر جدید</p>
     <form method="POST" class="post-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-secondary">Save</button>
+        <h5>متن</h5>{{ form.text }}
+        <button type="submit" class="save btn btn-secondary">ذخیره</button>
     </form>
+</div>
 {% endblock %}

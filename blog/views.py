@@ -55,7 +55,9 @@ def post_list(request):
     about_us_info = SiteAbout.objects.all()
     recently_post = Post.objects.filter(published_date__isnull=False).order_by('-published_date')[:5]
     most_visit_post = posts.filter(num_views__gt=0).order_by('-num_views','-published_date')[:5]
-    category_post = PostCategory.objects.all().annotate(posts_count=Count('post')).order_by('-pk')
+
+    category_post = PostCategory.objects.filter(post__published_date__isnull=False).annotate(
+        posts_count=Count('post')).all().order_by('-posts_count')
 
     paginator = Paginator(posts.order_by(sort), 5)
     page_number = request.GET.get('page')
@@ -98,9 +100,10 @@ def post_detail(request, pk):
         published_date__isnull=False).order_by('-published_date')[:5]
     most_visit_post = posts.filter(num_views__gt=0).order_by(
         '-num_views', '-published_date')[:5]
-    category_post = PostCategory.objects.all().annotate(
-        posts_count=Count('post')).order_by('-pk')
-
+    # category_post = PostCategory.objects.all().annotate(
+    #     posts_count=Count('post')).order_by('-posts_count')
+    category_post = PostCategory.objects.filter(post__published_date__isnull=False).annotate(
+        posts_count=Count('post')).all().order_by('-posts_count')
 
     context = {
         'post': post,
@@ -139,7 +142,6 @@ class CreatePost(View):
         return render(request, self.template_name, {'form': self.form_class()})
 
     def post(self, request):
-        # categories=PostCategory.objects.all()
         form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)

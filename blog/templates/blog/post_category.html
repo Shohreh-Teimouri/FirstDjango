@@ -8,7 +8,7 @@
                                         overflow: hidden;
                                         box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
                                         border-radius: 1em;
-                                        background: #ECE9E6;">
+                                        background: #ECE9E6; direction: rtl;">
             <div class="card__header">
                 <img style="width: 100%; height: 309px; display: block; object-fit: cover; padding-top:12px; border-radius: 1em;" src="{{post.image.url}}" width="600">
             </div>
@@ -20,13 +20,13 @@
                                                         background: linear-gradient(to bottom, #ef473a, #cb2d3e);
                                                         color: #fafafa;">{{post.categories.title_category}}</span>
                 <h4>{{post.title}}</h4>
-                <a href="{% url 'post_detail' pk=post.pk%}" style="color: gray; text-decoration: none;"><p>see more detail...</p></a>
+                <a href="{% url 'post_detail' pk=post.pk%}" style="color: gray; text-decoration: none; font-family: 'Entezar1'; word-spacing: 3px;"><p>مشاهده جزئیات بیشتر ...</p></a>
             </div>
             <div class="card__footer" style="display: flex;
                                                     padding: 1rem;
                                                     margin-top: auto;">
                 <div class="user" style="display: flex; gap: .5rem;">
-                    <img src="https://i.pravatar.cc/40?img=3" class="user__image" style="border-radius: 50%;">
+                    <img src="https://i.pravatar.cc/40?img=3" class="user__image" style="border-radius: 50%; width: 56px;">
                     <div class="user__info">
                         <h5>{{post.auther}}</h5>
                         {% if post.published_date %}

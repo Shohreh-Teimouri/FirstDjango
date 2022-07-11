@@ -9,7 +9,7 @@
             <p>{{ post.text|truncatechars:200 }}</p>
         </article> -->
 
-            <section class="dark-grey-text">
+            <section class="dark-grey-text" style="direction: rtl;">
                 <div class="row align-items-center">
                     <div class="col-lg-5 col-xl-4">
                         <div class="view overlay rounded z-depth-1-half mb-lg-0 mb-4">
@@ -20,7 +20,7 @@
                         <h4 class="font-weight-bold mb-3"><strong><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title}}</a></strong></h4>
                         <p class="dark-grey-text">{{ post.text|truncatechars:200 }}</p>
                         <br>
-                        <p>by <strong>{{post.auther}}</strong>, created: {{ post.created_date|date:'d-m-Y' }}</p>
+                        <p>توسط <strong>{{post.auther}}</strong>, ایجاد شده : {{ post.created_date|date:'d-m-Y' }}</p>
                     </div>
                 </div>
                 <hr class="my-5">

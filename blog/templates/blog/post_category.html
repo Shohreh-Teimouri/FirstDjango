@@ -19,7 +19,7 @@
                                                         font-size: .75rem; background: #cb2d3e;
                                                         background: linear-gradient(to bottom, #ef473a, #cb2d3e);
                                                         color: #fafafa;">{{post.categories.title_category}}</span>
-                <h4>{{post.title}}</h4>
+                <p style="font-family: 'Entezar1';word-spacing: 3px; font-size: 26px;">{{post.title}}</p>
                 <a href="{% url 'post_detail' pk=post.pk%}" style="color: gray; text-decoration: none; font-family: 'Entezar1'; word-spacing: 3px;"><p>مشاهده جزئیات بیشتر ...</p></a>
             </div>
             <div class="card__footer" style="display: flex;
@@ -30,7 +30,7 @@
                     <div class="user__info">
                         <h5>{{post.auther}}</h5>
                         {% if post.published_date %}
-                            <small style="color: #666;">{{post.published_date}}</small>
+                            <small style="color: #666;">{{post.published_date |date:'d-m-Y'}}</small>
                         {%endif%}    
                     </div>
                 </div>

@@ -12,18 +12,19 @@
                     <a class="btn btn-dark" href="{% url 'post_remove' pk=post.pk %}">{% include './icons/trash3.svg' %}</a>
                     {% endif %}
                 </aside>
-                <h2>{{ post.title }}
+                <h5 style="font-family: 'Entezar1';word-spacing: 3px; font-size: 32px;">{{ post.title }}
                     {% if post.published_date %}
-                    <time class="date" style="font-size: 12px;">
-                        {{ post.published_date }}
+                    <br>
+                    <time class="date" style="font-size: 16px;">
+                        منتشر شده در تاریخ: {{ post.published_date|date:'d-m-Y' }}
                     </time>
                     {% else %}
-                    <a class="btn btn-dark" style="border-radius: 15px; color: #fff; font-family: 'Entezar1'" href="{% url 'post_publish' pk=post.pk %}">انتشار</a>
+                    <a class="btn btn-dark" style="border-radius: 15px; color: #fff; font-family: 'Entezar1';word-spacing: 3px" href="{% url 'post_publish' pk=post.pk %}">انتشار</a>
                     {% endif %}
-                </h2>
+                </h5>
                 <p>{{ post.text|linebreaksbr }}</p>
                 <br>
-                <a class="btn btn-dark" style="border-radius: 15px; font-family: 'Entezar1'" href="{% url 'add_comment_to_post'  pk=post.pk%}">افزودن نظر</a>
+                <a class="btn btn-dark" style="border-radius: 15px; font-family: 'Entezar1';word-spacing: 3px" href="{% url 'add_comment_to_post'  pk=post.pk%}">افزودن نظر</a>
 
             </article>
 
@@ -68,16 +69,16 @@
         style="box-shadow: 0 1px 4px 0 rgb(0 0 0 / 20%), 0 3px 15px 0 rgb(0 0 0 / 9%); border-radius: 1rem; margin: 0 0 10px 10px; width: 98%; direction: rtl;">
         <div class="comment" style="margin: 20px;">
             <div class="date">
-                {{ comment.created_date }}
+                {{ comment.created_date | date:'d-m-Y' }}
             </div>
             <br>
             {%if user.is_authenticated %}
             <aside class="actions">
                 {% if not comment.approved_comment %}
-                <a class="btn btn-success" style="position: relative; float: left; right: 15px; top: 10px;"
+                <a class="btn btn-success" style="position: relative; float: left; right: 15px; top: 10px; font-family: 'Entezar1';word-spacing: 3px"
                     href="{% url 'comment_approve' pk=comment.pk %}">تایید پست</a>
                 {% else %}
-                <a class="btn btn-danger" style="position: relative; float: left; right: 15px; top: 10px;" ;
+                <a class="btn btn-danger" style="position: relative; float: left; right: 15px; top: 10px;font-family: 'Entezar1'; word-spacing: 3px;" ;
                     href="{% url 'comment_remove' pk=comment.pk %}">حذف پست</a>
 
                 {% endif %}

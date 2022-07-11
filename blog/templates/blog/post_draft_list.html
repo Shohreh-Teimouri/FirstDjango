@@ -17,10 +17,10 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-xl-8">
-                        <h4 class="font-weight-bold mb-3"><strong><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title}}</a></strong></h4>
+                        <p class="font-weight-bold mb-3" style="font-family: 'Entezar1'; font-size:32px; word-spacing: 3px;"><strong><a href="{% url 'post_detail' pk=post.pk %}" style="color: #470390 ;text-decoration:none;">{{ post.title}}</a></strong></p>
                         <p class="dark-grey-text">{{ post.text|truncatechars:200 }}</p>
                         <br>
-                        <p>توسط <strong>{{post.auther}}</strong>, ایجاد شده : {{ post.created_date|date:'d-m-Y' }}</p>
+                        <p style="font-family: 'Entezar1'; font-size:16px; word-spacing: 3px;">توسط <strong>{{post.auther}}</strong>، ایجاد شده : {{ post.created_date|date:'d-m-Y' }}</p>
                     </div>
                 </div>
                 <hr class="my-5">

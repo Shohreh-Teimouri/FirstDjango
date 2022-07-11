@@ -37,7 +37,7 @@
             </ul>
             <br>
             {% for post in recently_posts%}
-            <li style="list-style: none;"><a style="color:#000;" href="http://{{post.get_absolute_url}}">{{post.title}}</a>
+            <li style="list-style: none;"><a style="color:#000;" href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a>
             </li>
             {%endfor%}
         </div>

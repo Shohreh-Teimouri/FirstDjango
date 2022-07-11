@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="rightcolumn" style="float: left; width: 33%; padding: 20px 15px 15px 15px; direction: rtl;">
+    <div class="rightcolumn" style="float: left; width: 33%; padding: 20px 15px 15px 15px; direction: rtl;  font-family: 'Entezar1'; font-size: 20px; word-spacing: 3px;">
         <div class="post" style="background-color: white; padding:20px; margin-bottom: 30px;">
             <h5 style="font-family: Entezar1; display: flex; justify-content: center; font-size:40px;">درباره ما</h5>
             <div style="display: flex; justify-content: center"><img style="height:250px; width:250px; border-radius: 50%;" src="./static/image/Why-Choose-Us.png"></div>
@@ -48,17 +48,17 @@
             {%endfor%}
             <a href="{% url 'about-us'%}" style="text-decoration: none;"><p style="color:rgb(176, 174, 174); font-size:16px;">بیشتر در مورد ما بدانید ...</p></a>
         </div>
-        <div class="post" style="background-color: white; padding:15px; margin-bottom: 30px;">
+        <div class="post" style="background-color: white; padding:15px; margin-bottom: 30px; ">
             <ul><h3 style="font-family: Entezar1; display: flex; justify-content: center; font-size:32px;">پست های اخیر</h3></ul>
             <br>
             {% for post in recently_posts%}
-                <li style="list-style: none;"><a style="color:#000;" href="http://{{post.get_absolute_url}}">{{post.title}}</a></li>
+                <li style="list-style: none;"><a style="color:rgb(68, 68, 68);" href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></li>
             {%endfor%}
         </div>
         <div class="post" style="background-color: white; padding:15px; margin-bottom: 30px;">
             <ul><h3 style="font-family: Entezar1; display: flex; justify-content: center; font-size:32px;">پست های پر بازدید</h3></ul>
             {%for post in most_visit_post%}
-                <li style="list-style: none;"><a style="color:#000;" href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></li>
+                <li style="list-style: none;"><a style="color:rgb(68, 68, 68);" href="{% url 'post_detail' pk=post.pk %}">{{post.title}}</a></li>
             {%endfor%}
         </div>
         <div class="post" style="background-color: white; padding:15px; margin-bottom: 30px;">
@@ -67,7 +67,7 @@
                 </h3>
             </ul>
             {%for category in category_post%}
-            <li style="list-style: none;"><a style="color:#000;" href="{%url 'category' pk=category.pk %}">{{category.title_category}}: ({{category.posts_count}})</a>
+            <li style="list-style: none;"><a style="color:rgb(68, 68, 68);" href="{%url 'category' pk=category.pk %}">{{category.title_category}}: ({{category.posts_count}})</a>
             </li>
             {%endfor%}
         </div>

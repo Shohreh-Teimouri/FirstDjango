@@ -1,6 +1,5 @@
-
+from msilib.schema import PublishComponent
 from multiprocessing import context
-import re
 from unicodedata import category
 from django.core.paginator import (Paginator, EmptyPage,PageNotAnInteger)
 from django.db.models import Count, Q, F
@@ -9,7 +8,7 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .models import Post, Comment, PostCategory, SiteAbout, PostView
+from .models import Post, Comment, PostCategory, PostTag, SiteAbout, PostView
 from .forms import PostForm, CommentForm, RegisterForm
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
@@ -55,9 +54,9 @@ def post_list(request):
     about_us_info = SiteAbout.objects.all()
     recently_post = Post.objects.filter(published_date__isnull=False).order_by('-published_date')[:5]
     most_visit_post = posts.filter(num_views__gt=0).order_by('-num_views','-published_date')[:5]
-
     category_post = PostCategory.objects.filter(post__published_date__isnull=False).annotate(
         posts_count=Count('post')).all().order_by('-posts_count')
+  
 
     paginator = Paginator(posts.order_by(sort), 5)
     page_number = request.GET.get('page')
@@ -69,7 +68,8 @@ def post_list(request):
         'about_us_info': about_us_info,
         'recently_posts':recently_post,
         'most_visit_post':most_visit_post,
-        'category_post': category_post
+        'category_post': category_post,
+      
     }
     return render(request, 'blog/post_list.html', context)
 
@@ -104,6 +104,8 @@ def post_detail(request, pk):
     #     posts_count=Count('post')).order_by('-posts_count')
     category_post = PostCategory.objects.filter(post__published_date__isnull=False).annotate(
         posts_count=Count('post')).all().order_by('-posts_count')
+
+
 
     context = {
         'post': post,
@@ -296,4 +298,14 @@ def register_page(request):
     return render(request, './registration/register.html', {'register_form': register_form})
 
 
+def post_index(request, pk):
+    post_tag = get_object_or_404(PostTag, pk=pk)
+    related_post = Post.objects.filter(tag=post_tag, published_date__isnull=False)
+    # query = request.GET.get('q')
+    # if query:
+    #     post_list = Post.search(query)
+    paginator = Paginator(related_post, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
+    return render (request, 'blog/post_tag_search.html',{'post_tag':post_tag, 'page_obj':page_obj })

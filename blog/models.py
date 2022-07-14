@@ -1,6 +1,7 @@
 from cgitb import text
 from multiprocessing import AuthenticationError
 from turtle import title
+from django.db.models import Q
 from django.conf import settings
 from django.db import models
 from django.forms import CharField
@@ -33,6 +34,14 @@ class PostCategory(models.Model):
         return reverse('post-category', kwargs={'pk': self.pk})
 
 
+class PostTag(models.Model):
+    subject_tag = models.CharField(max_length=200, blank=True, verbose_name='تگ')
+
+    def __unicode__(self):
+        return self.subject_tag
+   
+
+
 class Post(models.Model):
     title = models.CharField(max_length=250)
     text = models.TextField()
@@ -43,6 +52,7 @@ class Post(models.Model):
     image = models.ImageField(
         upload_to=upload_image_path, null=True, blank=True, verbose_name='Image')
     categories = models.ForeignKey(PostCategory, null=True, blank=True, verbose_name='Category', on_delete=models.CASCADE)
+    tag = models.ManyToManyField(PostTag, blank=True, verbose_name='تگ')
     # visit_count = models.IntegerField(default=0)
     # visitors = models.ManyToManyField(settings.AUTH_USER_MODEL,
     #                                  related_name='post_visitor',
@@ -59,7 +69,13 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse ('post_detail', kwargs={"pk":self.pk})     
+        return reverse ('post_detail', kwargs={"pk":self.pk})   
+
+    # def search(self, query):
+    #     lookup = (Q(title__icontains=query) | 
+    #               Q(text__icontains=query) | 
+    #               Q(tag__icontains=query))
+    #     return self.get_queryset().filter(lookup, published_date__isnull=False).distinct()
 
 
 class Comment(models.Model):

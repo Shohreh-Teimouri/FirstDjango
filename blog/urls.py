@@ -17,7 +17,7 @@ urlpatterns = [
     path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
     path('about-us/', views.About_Us.as_view(), name='about-us'),
     path('category/<int:pk>/', views.post_category_detail, name='category'),
-    path('tag/<int:pk>/', views.post_index, name='tag'),
+    path('tag/<int:pk>/', views.post_tags, name='tag'),
 
 
 

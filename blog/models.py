@@ -37,7 +37,7 @@ class PostCategory(models.Model):
 class PostTag(models.Model):
     subject_tag = models.CharField(max_length=200, blank=True, verbose_name='تگ')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.subject_tag
    
 

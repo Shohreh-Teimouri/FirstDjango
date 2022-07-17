@@ -24,6 +24,12 @@ class PostViewAdmin(admin.ModelAdmin):
         model = PostView
 
 
+class PostTagAdmin(admin.ModelAdmin):
+    list_display = ['__str__', 'subject_tag']
+
+    class Meta:
+        model = PostTag
+
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(SiteAbout)

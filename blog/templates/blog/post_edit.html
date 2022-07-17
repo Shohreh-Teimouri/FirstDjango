@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% block content %}
-    <div style="background-color: white; padding:20px; margin-top:20px; margin-bottom: 20px; direction: rtl; font-family: 'Entezar1';">
+    <div style="background-color: white; padding:20px; margin-top:20px; margin-bottom: 20px; direction: rtl; font-family: 'Entezar1'; word-spacing: 3px;">
         <p class="page-header" style="background:linear-gradient(to right, #330069,#6610c2 ); color: white; font-size: 32px;">پست جدید</p>
         <br>
         <form method="POST" class="post-form" , enctype="multipart/form-data">
@@ -24,11 +24,13 @@
                 {% endfor %}
             </select>
             <br>
-            <!-- <h5>Tages</h5>
-                    <select class="form-select form-select-m mb-3" aria-label=".form-select-m example">
-                        <option selected>Choose Your Tags</option>
-                        <option value="1">One</option>
-                    </select> -->
+            <h5>برچسب</h5>
+            <select class="form-select form-select-m mb-3" aria-label=".form-select-m example"  name="tag">
+                <option selected>برچسب پست خود را انتخاب کنید</option>
+                {% for tag in form.tag %}
+                    <option value="{{tag.id}}">{{tag}}</option>
+                {% endfor %}
+            </select>
             <button type="submit" class="save btn btn-secondary">ذخیره</button>
         </form>
     </div>

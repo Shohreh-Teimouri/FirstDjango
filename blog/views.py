@@ -294,9 +294,7 @@ def register_page(request):
 def post_tags(request, pk):
     post_tag = get_object_or_404(PostTag, pk=pk)
     related_post = Post.objects.filter(tag=post_tag, published_date__isnull=False)
-    # query = request.GET.get('q')
-    # if query:
-    #     post_list = Post.search(query)
+    
     paginator = Paginator(related_post, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
